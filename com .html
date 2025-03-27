@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Video Platform</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f0f2f5;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height:60px;
+            background: #fff;
+            border-radius: 0px 0px 2px 20px;
+            padding: 12px 20px;
+            z-index: 1000;
+            animation: harderanimation;
+            animation-duration: 10s;
+            animation-iteration-count: 1;
+        }
+
+       @keyframes harderanimation {
+       	from{
+                background: #000000;
+                }
+                to{
+                background: #fff;
+                }
+       }
+
+        header .logo {
+            text-align: left;
+}
+
+        header .logo img {
+            width: 55px;
+            height: 55px;
+            margin-top: 1px;
+            border-radius: 50%;
+        }       	
+
+        /* Main Content */
+        .container {
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+
+        /* Featured Video */
+        .featured-video {
+            text-align: center;
+            padding: 10px 0px 8px 0px;
+            background: #ff9909;
+            border-radius: 20px 0px 0px 0px;
+        }
+
+        .featured-video .video-item {
+            max-width: 700px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+        }
+
+        .featured-video img {
+            width: 100%;
+            height: 200px;
+        }
+
+        .featured-video h2 {
+            color: #000;
+            font-size: 16px;
+            margin: 15px 0 10px;
+        }
+
+        .featured-video p {
+            color: #ccc;
+            font-size: 14px;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .video-item {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .video-item img {
+            width: 100%;
+            height: 200px;
+        }
+
+        .video-item h3 {
+            font-size: 16px;
+            padding: 12px;
+            color: #333;
+        }
+
+        .video-item p {
+            padding: 0 12px 12px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Watch Page */
+        .watch-page {
+            display: none;
+            padding: 20px;
+            background: #f0f2f5;
+        }
+
+        .video-player {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .video-player video {
+            max-width: 350px;
+            height: 200px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-details {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-details h2 {
+            color: #222;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .video-details p {
+            margin: 8px 0;
+            color: #666;
+        }
+        
+        .video-details h6 {
+        	margin-left:50px;
+            margin-top: 20px;
+         }
+       .video-details h3{
+       	margin-left: 140px;
+     	}
+
+        /* Bottom Navigation */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        footer a {
+            text-align: center;
+            text-decoration: none;
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        /* Hover Effects */
+        .video-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-item:hover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 0, 0, 0.2);
+            border-radius: 12px;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .featured-video .video-item {
+                max-width: 90%;
+            }
+
+            .video-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="https://static.vecteezy.com/system/resources/previews/024/051/947/non_2x/made-in-bangladesh-trust-badge-logo-design-made-in-the-bangladesh-logo-vector.jpg" alt="Apmytube">
+        </div>        
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Homepage -->
+        <div class="home-page">
+            <!-- Featured Video -->
+            <section class="featured-video">
+                <div class="video-item large" onclick="goToVideo(1)">
+                    <img src="https://img.youtube.com/vi/knlRWxCZhIA/maxresdefault.jpg" alt="Featured Video">
+                    <h2>Highlights | India vs Bangladesh | AFC Asian Cup qualifiers | Football | T Sports</h2>
+                    <p><strong>T Sports</strong> · 2M views · 1 days ago</p>
+                </div>
+            </section>
+
+            <!-- Video Grid -->
+            <section class="video-grid">
+                <!-- Videos will be dynamically loaded here -->
+            </section>
+        </div>
+
+        <!-- Watch Page -->
+        <div class="watch-page">
+            <section class="video-player">
+                 <iframe
+                    id="videoPlayer" 
+                    width="100%" 
+                    height="199" 
+                    src="" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </section>
+            <section class="video-details">
+                <h2 id="videoTitle"></h2>
+                <p><strong>Channel:</strong> <span id="channelName"></span></p>
+                <p><strong>Views:</strong> <span id="videoViews"></span></p>
+                <p><strong>Uploaded:</strong> <span id="uploadedDate"></span></p>
+                   <h6> 'This full app produced by,</h6>
+                     <b><h3>"Jisan Billa"</h3></b>
+                   </section>
+    </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <footer>
+        <a href="#" id="backButton" onclick="goBack()">
+            <img src="https://cdn.qwenlm.ai/output/1ec5c17c-d17c-4d93-8cc0-c24910d291ee/t2i/8502acf1-f40c-4e6d-a4cf-cc53e8615087/0377d26c-8c87-4931-83ee-790b57a82f21.png?key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXNvdXJjZV91c2VyX2lkIjoiMWVjNWMxN2MtZDE3Yy00ZDkzLThjYzAtYzI0OTEwZDI5MWVlIiwicmVzb3VyY2VfaWQiOiIwMzc3ZDI2Yy04Yzg3LTQ5MzEtODNlZS03OTBiNTdhODJmMjEiLCJyZXNvdXJjZV9jaGF0X2lkIjpudWxsfQ.deaDU4hIJ66ahWM6Vx_j0NozurQ5B17LIIT01__lkZA" alt="Back" style="width:50px; height:47px; margin-left: 132px; border-radius: 50%;">
+         </a>
+    </footer>
+
+    <script>
+        // Video data
+        const videos = [
+            { 
+                id: 1, 
+                title: "Highlights | India vs Bangladesh | AFC Asian Cup qualifiers | Football | T Sports", 
+                thumbnail: "https://img.youtube.com/vi/knlRWxCZhIA/maxresdefault.jpg", 
+                videoUrl: "https://www.youtube.com/embed/knlRWxCZhIA?si=S_SRAPnoVIgdXM5-", 
+                channel: "T Sports", 
+                views: "2M", 
+                uploaded: "1 days ago" 
+            },
+            { 
+                id: 2, 
+                title: "রোজা হতে পারে ২৯টি, জানালো আবহাওয়া অফিস | Eid ul Fitr 2025 | Eid in Bangladesh | BVNEWS24", 
+                thumbnail: "https://img.youtube.com/vi/DmMcsrV34Go/maxresdefault.jpg", 
+                videoUrl: "https://www.youtube.com/embed/DmMcsrV34Go?si=ppSlDPfqzcvWpzdT", 
+                channel: "Bangla Vision", 
+                views: "934K", 
+                uploaded: "1 hours ago" 
+            },
+            { 
+                id: 3, 
+                title: "বরবাদ কাটাছেড়া হয়ে সিনেমা হলে যাক আমি চাই না: হৃদয় | Mehedi Hassan Hridoy | Director | Borbaad", 
+                thumbnail: "https://img.youtube.com/vi/Ozn9y_VjsY4/maxresdefault.jpg", 
+                videoUrl: "https://www.youtube.com/embed/Ozn9y_VjsY4?si=g1smoCzS0Bjp_bEb", 
+                channel: "Somoy Entertainment", 
+                views: "493K", 
+                uploaded: "1 days ago" 
+            },
+            {
+            	id: 4,
+                title: "এক হালি দিয়ে স্কালোনি বললেন 'ব্রাজিল আবার ঘুরে দাঁড়াবে' | Brazil vs Argentina | Scaloni",
+                thumbnail: "https://img.youtube.com/vi/53xiHcDEUDQ/maxresdefault.jpg",
+                videoUrl: "https://www.youtube.com/embed/53xiHcDEUDQ?si=R_LtO3eWteHsOUVF",
+                channel: "Channel 24",
+                views: "708K",
+                uploaded: "14 hours ago",
+            	}
+        ];
+
+        // Load videos on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const videoGrid = document.querySelector('.video-grid');
+            videos.forEach(video => {
+                const item = `
+                    <div class="video-item" onclick="goToVideo(${video.id})">
+                        <img src="${video.thumbnail}" alt="${video.title}">
+                        <h3>${video.title}</h3>
+                        <p><strong>${video.channel}</strong> · ${video.views} · ${video.uploaded}</p>
+                    </div>
+                `;
+                videoGrid.innerHTML += item;
+            });
+
+            // Show watch page if video ID is present
+            const urlParams = new URLSearchParams(window.location.search);
+            const videoId = urlParams.get('id');
+            if (videoId) {
+                showWatchPage(videoId);
+            }
+        });
+
+        // Go to watch page
+        function goToVideo(id) {
+            window.location.href = `?id=${id}`;
+        }
+
+        // Show watch page details
+        function showWatchPage(id) {
+            const homePage = document.querySelector('.home-page');
+            const watchPage = document.querySelector('.watch-page');
+            homePage.style.display = 'none';
+            watchPage.style.display = 'block';
+
+            const selectedVideo = videos.find(v => v.id == id);
+            if (selectedVideo) {
+                document.getElementById('videoPlayer').src = selectedVideo.videoUrl;
+                document.getElementById('videoTitle').textContent = selectedVideo.title;
+                document.getElementById('channelName').textContent = selectedVideo.channel;
+                document.getElementById('videoViews').textContent = selectedVideo.views;
+                document.getElementById('uploadedDate').textContent = selectedVideo.uploaded;
+            }
+        }
+
+        // Go back to homepage
+        function goBack() {
+            window.location.href = window.location.pathname;
+        }
+    </script>
+</body>
+</html>
